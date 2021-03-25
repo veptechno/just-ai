@@ -32,3 +32,4 @@ out/
 
 ### VK ###
 /src/main/resources/secret.properties
+/secret.list
