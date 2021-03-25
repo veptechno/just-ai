@@ -12,7 +12,7 @@ class Confirmator {
     @Value("\${bot.confirmationToken}")
     private lateinit var token: String
 
-    private var logger: Logger = LoggerFactory.getLogger(Confirmator::class.java)
+    private val logger: Logger = LoggerFactory.getLogger(Confirmator::class.java)
 
     fun confirm(event: ConfirmationEvent): String {
         logger.info("Successfully returned confirmation token")

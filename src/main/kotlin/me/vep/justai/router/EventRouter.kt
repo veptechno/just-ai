@@ -19,6 +19,5 @@ class EventRouter(
         is NewMessageEvent -> repeater.process(event)
         is ConfirmationEvent -> confirmator.confirm(event)
         is UnknownEvent -> OK
-
     }
 }

@@ -43,19 +43,20 @@ class NewMessageEventTest {
     }
 
     @Test
-    fun `Returns OK and does not send a message when new message event is received with blank text`() {
-        val json =
-            """{
-                    "type": "message_new",
-                    "object": {
-                        "id": 1,
-                        "peer_id": 123,
-                        "from_id": 345,
-                        "text": ""
-                    },
-                    "group_id": $groupId,
-                    "secret": "$identificationKey"
-                }""".trimIndent()
+    fun `returns OK and does not send a message when new message event is received with blank text`() {
+        val json = """
+            {
+                "type": "message_new",
+                "object": {
+                    "id": 1,
+                    "peer_id": 123,
+                    "from_id": 345,
+                    "text": ""
+                },
+                "group_id": $groupId,
+                "secret": "$identificationKey"
+            }
+            """.trimIndent()
 
         mockMvc.post("/echobot") {
             contentType = MediaType.APPLICATION_JSON
@@ -69,7 +70,7 @@ class NewMessageEventTest {
     }
 
     @Test
-    fun `Returns OK and sends a message when new message event is received with filled text`() {
+    fun `returns OK and sends a message when new message event is received with filled text`() {
         val json =
             """{
                     "type": "message_new",

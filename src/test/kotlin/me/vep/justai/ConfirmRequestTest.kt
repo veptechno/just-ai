@@ -26,13 +26,14 @@ class ConfirmRequestTest {
     lateinit var correctToken: String
 
     @Test
-    fun `Returns confirmation token when an confirmation event is received`() {
-        val json =
-            """{
-                    "type": "confirmation",
-                    "group_id": $groupId,
-                    "secret": "$identificationKey"
-                }""".trimIndent()
+    fun `returns confirmation token when an confirmation event is received`() {
+        val json = """
+            {
+                "type": "confirmation",
+                "group_id": $groupId,
+                "secret": "$identificationKey"
+            }
+            """.trimIndent()
 
         mockMvc.post("/echobot") {
             contentType = MediaType.APPLICATION_JSON

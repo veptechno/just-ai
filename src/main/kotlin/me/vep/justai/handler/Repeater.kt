@@ -12,7 +12,7 @@ class Repeater(
     val messageSender: MessageSender
 ) {
 
-    private var logger: Logger = LoggerFactory.getLogger(Repeater::class.java)
+    private val logger: Logger = LoggerFactory.getLogger(Repeater::class.java)
 
     fun process(event: NewMessageEvent): String {
         val inputText = event.content.text

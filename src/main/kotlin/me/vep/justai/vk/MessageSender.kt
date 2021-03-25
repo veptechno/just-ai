@@ -24,7 +24,7 @@ class MessageSender(
     private val endpoint = "/method/messages.send"
     private val apiVersion = "5.80"
 
-    private var logger: Logger = LoggerFactory.getLogger(MessageSender::class.java)
+    private val logger: Logger = LoggerFactory.getLogger(MessageSender::class.java)
 
     fun send(text: String, peerId: Int) {
         if (text.isBlank()) {

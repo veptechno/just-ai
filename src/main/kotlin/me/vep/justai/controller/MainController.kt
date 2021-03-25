@@ -24,7 +24,7 @@ class MainController(
     @Value("\${bot.groupId}")
     private var currentGroupId: Int = 0
 
-    private var logger: Logger = LoggerFactory.getLogger(MainController::class.java)
+    private val logger: Logger = LoggerFactory.getLogger(MainController::class.java)
 
     @PostMapping
     fun post(@RequestBody event: Event): String {

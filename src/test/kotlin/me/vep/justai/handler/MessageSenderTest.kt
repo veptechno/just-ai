@@ -35,7 +35,7 @@ class MessageSenderTest {
     }
 
     @Test
-    fun `Sends a message with filled text`() {
+    fun `sends a message with filled text`() {
         sender.send("hello", 1234567)
 
         verify(restTemplate, timeout(100))
@@ -43,7 +43,7 @@ class MessageSenderTest {
     }
 
     @Test
-    fun `Throws an exception and does not send a message if the text is blank`() {
+    fun `throws an exception and does not send a message if the text is blank`() {
         assertThrows<IllegalArgumentException> {
             sender.send("  ", 1232143)
         }

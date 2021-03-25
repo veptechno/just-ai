@@ -24,14 +24,15 @@ class MainControllerTest {
     lateinit var identificationKey: String
 
     @Test
-    fun `Returns OK when an unknown event is received`() {
-        val json =
-            """{
-                    "type": "group_join",
-                    "object": {},
-                    "group_id": $groupId,
-                    "secret": "$identificationKey"
-                }""".trimIndent()
+    fun `returns OK when an unknown event is received`() {
+        val json = """
+            {
+                "type": "group_join",
+                "object": {},
+                "group_id": $groupId,
+                "secret": "$identificationKey"
+            }
+            """.trimIndent()
 
         mockMvc.post("/echobot") {
             contentType = MediaType.APPLICATION_JSON
@@ -43,14 +44,15 @@ class MainControllerTest {
     }
 
     @Test
-    fun `Returns FORBIDDEN if the group_id is not equal to the group id`() {
+    fun `returns FORBIDDEN if the group_id is not equal to the group id`() {
         val invalidGroupId = 1204235235
-        val json =
-            """{
-                    "type": "confirmation",
-                    "group_id": $invalidGroupId,
-                    "secret": "$identificationKey"
-                }""".trimIndent()
+        val json = """
+            {
+                "type": "confirmation",
+                "group_id": $invalidGroupId,
+                "secret": "$identificationKey"
+            }
+            """.trimIndent()
 
         mockMvc.post("/echobot") {
             contentType = MediaType.APPLICATION_JSON
@@ -64,14 +66,15 @@ class MainControllerTest {
     }
 
     @Test
-    fun `Returns FORBIDDEN if the secret is not equal to the vk identification key`() {
+    fun `returns FORBIDDEN if the secret is not equal to the vk identification key`() {
         val invalidKey = "jdsfnu34ir3i4fn34f2klgnjn5"
-        val json =
-            """{
-                    "type": "confirmation",
-                    "group_id": $groupId,
-                    "secret": "$invalidKey"
-                }""".trimIndent()
+        val json = """
+            {
+                "type": "confirmation",
+                "group_id": $groupId,
+                "secret": "$invalidKey"
+            }
+            """.trimIndent()
 
         mockMvc.post("/echobot") {
             contentType = MediaType.APPLICATION_JSON
@@ -85,15 +88,16 @@ class MainControllerTest {
     }
 
     @Test
-    fun `Returns FORBIDDEN due to the secret if the secret and the group_id are invalid`() {
+    fun `returns FORBIDDEN due to the secret if the secret and the group_id are invalid`() {
         val invalidKey = "jdsfnu34ir3i4fn34f2klgnjn5"
         val invalidGroupId = 1204235235
-        val json =
-            """{
-                    "type": "confirmation",
-                    "group_id": $invalidGroupId,
-                    "secret": "$invalidKey"
-                }""".trimIndent()
+        val json = """
+            {
+                "type": "confirmation",
+                "group_id": $invalidGroupId,
+                "secret": "$invalidKey"
+            }
+            """.trimIndent()
 
         mockMvc.post("/echobot") {
             contentType = MediaType.APPLICATION_JSON
