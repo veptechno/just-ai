@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component
 
 @Component
 class EventRouter(
-        private val confirmator: Confirmator,
-        private val repeater: Repeater
+    private val confirmator: Confirmator,
+    private val repeater: Repeater
 ) {
 
     fun route(event: Event) = when (event) {

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class Repeater(
-        val messageSender: MessageSender
+    val messageSender: MessageSender
 ) {
 
     private var logger: Logger = LoggerFactory.getLogger(Repeater::class.java)

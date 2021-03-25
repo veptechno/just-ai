@@ -9,13 +9,13 @@ import org.springframework.scheduling.annotation.EnableAsync
 @SpringBootApplication
 @EnableAsync
 @PropertySources(
-		value = [
-			PropertySource("classpath:secret.properties"),
-			PropertySource("classpath:application.properties")
-		]
+    value = [
+        PropertySource("classpath:secret.properties"),
+        PropertySource("classpath:application.properties")
+    ]
 )
 class Application
 
 fun main(args: Array<String>) {
-	runApplication<Application>(*args)
+    runApplication<Application>(*args)
 }

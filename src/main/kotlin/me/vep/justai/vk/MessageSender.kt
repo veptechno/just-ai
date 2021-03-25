@@ -10,8 +10,8 @@ import kotlin.random.Random
 
 @Service
 class MessageSender(
-        val restTemplate: RestTemplate,
-        val asyncExecutor: ThreadPoolTaskExecutor
+    val restTemplate: RestTemplate,
+    val asyncExecutor: ThreadPoolTaskExecutor
 ) {
 
     @Value("\${bot.vk.accessToken}")
@@ -39,7 +39,8 @@ class MessageSender(
         }
     }
 
-    private fun buildUrl(text: String, peerId: Int): String = "https://$host$endpoint?" +
+    private fun buildUrl(text: String, peerId: Int) =
+        "https://$host$endpoint?" +
             "peer_id=$peerId" +
             "&random_id=${Random.nextInt()}" +
             "&message=$text" +
