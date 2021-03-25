@@ -17,7 +17,7 @@ class MessageSender(
     @Value("\${bot.vk.accessToken}")
     private lateinit var accessToken: String
 
-    @Value("\${bot.id}")
+    @Value("\${bot.groupId}")
     private var groupId: Int? = 0
 
     private val host = "api.vk.com"

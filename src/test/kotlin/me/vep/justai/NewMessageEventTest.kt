@@ -1,5 +1,6 @@
 package me.vep.justai
 
+import me.vep.justai.vk.OK
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentMatchers.any
@@ -29,8 +30,8 @@ class NewMessageEventTest {
     @Autowired
     lateinit var mockMvc: MockMvc
 
-    @Value("\${bot.id}")
-    var botId = 0
+    @Value("\${bot.groupId}")
+    var groupId = 0
 
     @Value("\${bot.vk.identificationKey}")
     lateinit var identificationKey: String
@@ -52,7 +53,7 @@ class NewMessageEventTest {
                         "from_id": 345,
                         "text": ""
                     },
-                    "group_id": $botId,
+                    "group_id": $groupId,
                     "secret": "$identificationKey"
                 }""".trimIndent()
 
@@ -61,7 +62,7 @@ class NewMessageEventTest {
             content = json
         }.andExpect {
             status { isOk() }
-            content { string("ok") }
+            content { string(OK) }
         }
         verify(restTemplate, never())
             .getForEntity(anyString(), any(String::class.java::class.java))
@@ -78,7 +79,7 @@ class NewMessageEventTest {
                         "from_id": 345,
                         "text": "hello"
                     },
-                    "group_id": $botId,
+                    "group_id": $groupId,
                     "secret": "$identificationKey"
                 }""".trimIndent()
 
@@ -87,7 +88,7 @@ class NewMessageEventTest {
             content = json
         }.andExpect {
             status { isOk() }
-            content { string("ok") }
+            content { string(OK) }
         }
         verify(restTemplate, times(1))
             .getForEntity(anyString(), any(String::class.java::class.java))

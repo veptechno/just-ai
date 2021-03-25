@@ -1,5 +1,6 @@
 package me.vep.justai
 
+import me.vep.justai.vk.OK
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -16,8 +17,8 @@ class MainControllerTest {
     @Autowired
     lateinit var mockMvc: MockMvc
 
-    @Value("\${bot.id}")
-    var botId = 0
+    @Value("\${bot.groupId}")
+    var groupId = 0
 
     @Value("\${bot.vk.identificationKey}")
     lateinit var identificationKey: String
@@ -28,7 +29,7 @@ class MainControllerTest {
             """{
                     "type": "group_join",
                     "object": {},
-                    "group_id": $botId,
+                    "group_id": $groupId,
                     "secret": "$identificationKey"
                 }""".trimIndent()
 
@@ -37,12 +38,12 @@ class MainControllerTest {
             content = json
         }.andExpect {
             status { isOk() }
-            content { string("ok") }
+            content { string(OK) }
         }
     }
 
     @Test
-    fun `Returns FORBIDDEN if the group_id is not equal to the bot id`() {
+    fun `Returns FORBIDDEN if the group_id is not equal to the group id`() {
         val invalidGroupId = 1204235235
         val json =
             """{
@@ -68,7 +69,7 @@ class MainControllerTest {
         val json =
             """{
                     "type": "confirmation",
-                    "group_id": $botId,
+                    "group_id": $groupId,
                     "secret": "$invalidKey"
                 }""".trimIndent()
 

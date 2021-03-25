@@ -16,8 +16,8 @@ class ConfirmRequestTest {
     @Autowired
     lateinit var mockMvc: MockMvc
 
-    @Value("\${bot.id}")
-    var botId = 0
+    @Value("\${bot.groupId}")
+    var groupId = 0
 
     @Value("\${bot.vk.identificationKey}")
     lateinit var identificationKey: String
@@ -30,7 +30,7 @@ class ConfirmRequestTest {
         val json =
             """{
                     "type": "confirmation",
-                    "group_id": $botId,
+                    "group_id": $groupId,
                     "secret": "$identificationKey"
                 }""".trimIndent()
 
